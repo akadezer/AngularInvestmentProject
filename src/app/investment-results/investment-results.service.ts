@@ -2,23 +2,30 @@
 // e.g., integrate it into a service or component
 // You may need to tweak it, depending on where and how you use it
 
-function calculateInvestmentResults() {
-  const annualData = [];
-  let investmentValue = initialInvestment;
+import { userInput } from '../user-input/user-input.model';
 
-  for (let i = 0; i < duration; i++) {
+export function calculateInvestmentResults(userData: userInput) {
+  console.log('Calculating investment results for:', userData);
+  const annualData = [];
+  let investmentValue = userData.initialInvestment;
+
+  for (let i = 0; i < userData.duration; i++) {
     const year = i + 1;
-    const interestEarnedInYear = investmentValue * (expectedReturn / 100);
-    investmentValue += interestEarnedInYear + annualInvestment;
+    const interestEarnedInYear =
+      investmentValue * (userData.expectedReturn / 100);
+    investmentValue += interestEarnedInYear + userData.annualInvestment;
     const totalInterest =
-      investmentValue - annualInvestment * year - initialInvestment;
+      investmentValue -
+      userData.annualInvestment * year -
+      userData.initialInvestment;
     annualData.push({
       year: year,
       interest: interestEarnedInYear,
       valueEndOfYear: investmentValue,
-      annualInvestment: annualInvestment,
+      annualInvestment: userData.annualInvestment,
       totalInterest: totalInterest,
-      totalAmountInvested: initialInvestment + annualInvestment * year,
+      totalAmountInvested:
+        userData.initialInvestment + userData.annualInvestment * year,
     });
   }
 

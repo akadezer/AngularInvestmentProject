@@ -1,7 +1,4 @@
 <app-header />
-<app-user-input (inputData)="calculateRes($event)" />
-@if (res) {
-<app-investment-results [userData]="userdata" />
-}@else {
-<p class="center">Input data to calculate investment results!</p>
-}
+<app-user-input />
+
+<app-investment-results />
